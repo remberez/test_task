@@ -29,7 +29,11 @@ def build_menu_tree(menu_items):
 
 @register.inclusion_tag('menu/menu_tag.html')
 def draw_menu(menu):
-    items =  menu.menu_items.all().order_by('-parent_item')
+    items =  menu.menu_items.all().select_related(
+        'parent_item', 'menu'
+    ).order_by(
+        '-parent_item'
+    )
     tree = build_menu_tree(items)
     return {
         'items': tree,
