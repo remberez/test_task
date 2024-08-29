@@ -1,0 +1,11 @@
+<ul>
+    {% for item, children in items.items %}
+        <li>
+            <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
+            <i style="font-size: 10px">{{ item.created_at }}</i>
+            {% if children|length > 0 %}
+                {% include 'menu/menu_tag.html' with items=children %}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
