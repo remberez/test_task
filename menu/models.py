@@ -12,6 +12,7 @@ class BaseModel(models.Model):
         verbose_name='Дата изменения', auto_now_add=True
     )
     slug = models.SlugField(
+        verbose_name='Слаг (генерируется автоматически)',
         unique=True, blank=True
     )
 
@@ -64,7 +65,7 @@ class MenuItem(BaseModel):
     )
     content = models.TextField()
     path = models.CharField(
-        verbose_name='Путь', max_length=64,
+        verbose_name='Путь (генерируется автоматически)', max_length=64,
         unique=True, blank=True,
     )
 
